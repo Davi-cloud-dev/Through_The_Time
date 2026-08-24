@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://cmav2cgly1yql"]
+
+[ext_resource type="Script" uid="uid://6vlgf8k38c7x" path="res://Scripts/level.gd" id="1_3reek"]
+[ext_resource type="PackedScene" uid="uid://dhvu06x74fpef" path="res://Scenes/LevelCastle.tscn" id="2_2qb78"]
+[ext_resource type="Texture2D" uid="uid://c38v1c5itnh7h" path="res://Sprites/AncientTemple/background 1.png" id="2_tm1i6"]
+[ext_resource type="Texture2D" uid="uid://tcp7ujqbdsmq" path="res://Sprites/AncientTemple/Plan 1.png" id="3_2qb78"]
+[ext_resource type="Texture2D" uid="uid://b7d0440dmybxr" path="res://Sprites/AncientTemple/Plan 4.png" id="4_64svw"]
+[ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="6_2qb78"]
+[ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="7_64svw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+size = Vector2(320, 6.25)
+
+[node name="LevelAncientTemple" type="ParallaxBackground" unique_id=473952094 node_paths=PackedStringArray("score_label")]
+script = ExtResource("1_3reek")
+target_score = 2000.0
+next_scene = ExtResource("2_2qb78")
+score_label = NodePath("CanvasLayer/Label")
+
+[node name="ParallaxBG" type="ParallaxLayer" parent="." unique_id=455257538]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG" unique_id=1762938153]
+scale = Vector2(0.5538194, 0.566)
+texture = ExtResource("2_tm1i6")
+centered = false
+
+[node name="ParallaxP1" type="ParallaxLayer" parent="." unique_id=2023337995]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxP1" unique_id=902862387]
+scale = Vector2(0.5, 0.568)
+texture = ExtResource("3_2qb78")
+centered = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=163026559]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=339863211]
+position = Vector2(159, 181)
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="ParallaxP2" type="ParallaxLayer" parent="." unique_id=1732695897]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxP2" unique_id=225665386]
+scale = Vector2(0.5, 0.568)
+texture = ExtResource("4_64svw")
+centered = false
+
+[node name="ParallaxP3" type="ParallaxLayer" parent="." unique_id=1504053830]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxP3" unique_id=735803181]
+scale = Vector2(0.5, 0.568)
+texture = ExtResource("4_64svw")
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1347640479]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1130720605]
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 22.0
+text = "Score: 0"
+
+[node name="Player" parent="." unique_id=100712526 instance=ExtResource("6_2qb78")]
+position = Vector2(-102, 84)
+
+[node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("7_64svw")]
+position = Vector2(168, 88)
+ground_marker = NodePath("../GroundSpawnPoint")
+air_marker = NodePath("../AirSpawnPoint")
+
+[node name="GroundSpawnPoint" type="Marker2D" parent="." unique_id=1186343941]
+position = Vector2(269, 166)
+
+[node name="AirSpawnPoint" type="Marker2D" parent="." unique_id=1843394122]
+position = Vector2(300, 153)

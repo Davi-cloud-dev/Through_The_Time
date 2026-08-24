@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://dgmxajv207m2v"]
+
+[ext_resource type="Script" uid="uid://6vlgf8k38c7x" path="res://Scripts/level.gd" id="1_xylue"]
+[ext_resource type="PackedScene" uid="uid://cmav2cgly1yql" path="res://Scenes/LevelAncient_Temple.tscn" id="2_55831"]
+[ext_resource type="Texture2D" uid="uid://ciyssc5mymoff" path="res://Sprites/Vulcano/00_background.png" id="2_esopp"]
+[ext_resource type="Texture2D" uid="uid://dipuyekaioi2v" path="res://Sprites/Vulcano/01_sky.png" id="3_b10nm"]
+[ext_resource type="Texture2D" uid="uid://dtr4kepqlqp0p" path="res://Sprites/Vulcano/02_mountains.png" id="4_fhlu0"]
+[ext_resource type="Texture2D" uid="uid://djhcv8jpv2n5" path="res://Sprites/Vulcano/03_mountains.png" id="5_bktio"]
+[ext_resource type="Texture2D" uid="uid://dmme6dfayme4m" path="res://Sprites/Vulcano/04_volcano.png" id="6_nrlyp"]
+[ext_resource type="Texture2D" uid="uid://dkfpmgid0ae23" path="res://Sprites/Vulcano/05_smoke.png" id="7_44tr1"]
+[ext_resource type="Texture2D" uid="uid://djhsydtcivuem" path="res://Sprites/Vulcano/06_hills.png" id="8_pmxqn"]
+[ext_resource type="Texture2D" uid="uid://tfs4t0txrcis" path="res://Sprites/Vulcano/07_hills.png" id="9_gs5q7"]
+[ext_resource type="Texture2D" uid="uid://cnq4nl2ldqvqm" path="res://Sprites/Vulcano/08_trees.png" id="10_q24aw"]
+[ext_resource type="Texture2D" uid="uid://8fgvc28bcno8" path="res://Sprites/Vulcano/09_grass.png" id="11_32npc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+size = Vector2(320, 6.25)
+
+[node name="LevelVolcano" type="ParallaxBackground" unique_id=473952094 node_paths=PackedStringArray("score_label")]
+script = ExtResource("1_xylue")
+next_scene = ExtResource("2_55831")
+score_label = NodePath("CanvasLayer/Label")
+
+[node name="ParallaxBG" type="ParallaxLayer" parent="." unique_id=455257538]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG" unique_id=1762938153]
+scale = Vector2(2.5078125, 2.828125)
+texture = ExtResource("2_esopp")
+centered = false
+
+[node name="ParallaxSky" type="ParallaxLayer" parent="." unique_id=2023337995]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxSky" unique_id=902862387]
+scale = Vector2(2.4921875, 2.828125)
+texture = ExtResource("3_b10nm")
+centered = false
+
+[node name="ParallaxM1" type="ParallaxLayer" parent="." unique_id=1559354798]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxM1" unique_id=920961359]
+scale = Vector2(2.515625, 2.84375)
+texture = ExtResource("4_fhlu0")
+centered = false
+
+[node name="ParallaxM2" type="ParallaxLayer" parent="." unique_id=2006553081]
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxM2" unique_id=2072864650]
+position = Vector2(161.99998, 128)
+scale = Vector2(2.5156248, 1.71875)
+texture = ExtResource("5_bktio")
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=163026559]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=339863211]
+position = Vector2(160, 183)
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="ParallaxVolcano" type="ParallaxLayer" parent="." unique_id=757579040]
+motion_mirroring = Vector2(105, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxVolcano" unique_id=1979692038]
+position = Vector2(319.5, 152)
+scale = Vector2(0.8346354, 1)
+texture = ExtResource("6_nrlyp")
+
+[node name="ParallaxSmoke" type="ParallaxLayer" parent="." unique_id=297435598]
+motion_mirroring = Vector2(105, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxSmoke" unique_id=2039451602]
+position = Vector2(383, 152)
+texture = ExtResource("7_44tr1")
+
+[node name="ParallaxHills1" type="ParallaxLayer" parent="." unique_id=1322677254]
+motion_mirroring = Vector2(315, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxHills1" unique_id=1995582117]
+position = Vector2(163.49998, 151)
+scale = Vector2(2.5546873, 1)
+texture = ExtResource("8_pmxqn")
+
+[node name="ParallaxHills2" type="ParallaxLayer" parent="." unique_id=120846617]
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxHills2" unique_id=154966213]
+position = Vector2(160.50002, 150.5)
+scale = Vector2(2.5234377, 1.015625)
+texture = ExtResource("9_gs5q7")
+
+[node name="ParallaxTrees" type="ParallaxLayer" parent="." unique_id=560271493]
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxTrees" unique_id=671843095]
+position = Vector2(78, 155)
+scale = Vector2(1.21875, 1)
+texture = ExtResource("10_q24aw")
+
+[node name="ParallaxGrass" type="ParallaxLayer" parent="." unique_id=1972163126]
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxGrass" unique_id=1736882906]
+position = Vector2(79.5, 152)
+scale = Vector2(1.2734375, 1)
+texture = ExtResource("11_32npc")
+
+[node name="ParallaxTrees2" type="ParallaxLayer" parent="." unique_id=145287633]
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxTrees2" unique_id=1270858557]
+position = Vector2(240, 154)
+scale = Vector2(1.2343751, 1)
+texture = ExtResource("10_q24aw")
+
+[node name="ParallaxGrass2" type="ParallaxLayer" parent="." unique_id=1291826593]
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxGrass2" unique_id=355177274]
+position = Vector2(241, 152)
+scale = Vector2(1.2734375, 1)
+texture = ExtResource("11_32npc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1412680715]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1078716003]
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 22.0
+text = "Score: 0"

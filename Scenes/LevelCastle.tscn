@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://dhvu06x74fpef"]
+
+[ext_resource type="Script" uid="uid://6vlgf8k38c7x" path="res://Scripts/level.gd" id="1_p48p4"]
+[ext_resource type="PackedScene" uid="uid://bhvk3oyo545fy" path="res://Scenes/LevelIndustrial.tscn" id="2_a2ywt"]
+[ext_resource type="Texture2D" uid="uid://dc7baxkm41tdr" path="res://Sprites/Castle/pine castle day/castle.png" id="2_mju6c"]
+[ext_resource type="Texture2D" uid="uid://bkvgo6siinmr3" path="res://Sprites/Castle/pine castle day/day forect.png" id="3_a2ywt"]
+[ext_resource type="Texture2D" uid="uid://dqcdemss8ok68" path="res://Sprites/Castle/pine castle day/pine1.png" id="4_xfyjw"]
+[ext_resource type="Texture2D" uid="uid://dmlpo5ff03w56" path="res://Sprites/Castle/pine castle day/pine2.png" id="5_8ufsg"]
+[ext_resource type="Texture2D" uid="uid://cdxwu54q6jlyl" path="res://Sprites/Castle/pine castle day/pine3.png" id="6_l43lf"]
+[ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="8_a2ywt"]
+[ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="9_xfyjw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+size = Vector2(320, 3.125)
+
+[node name="LevelCastle" type="ParallaxBackground" unique_id=473952094 node_paths=PackedStringArray("score_label")]
+script = ExtResource("1_p48p4")
+target_score = 3000.0
+next_scene = ExtResource("2_a2ywt")
+score_label = NodePath("CanvasLayer/Label")
+
+[node name="ParallaxBG" type="ParallaxLayer" parent="." unique_id=455257538]
+scale = Vector2(0.183, 0.183)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG" unique_id=1762938153]
+position = Vector2(245.90164, -5.464481)
+scale = Vector2(2.2284834, 2.828125)
+texture = ExtResource("2_mju6c")
+centered = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=163026559]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=339863211]
+position = Vector2(160, 184.5625)
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="ParallaxDayFlorest" type="ParallaxLayer" parent="." unique_id=1182525228]
+scale = Vector2(0.17615739, 0.18699957)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(128, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxDayFlorest" unique_id=489792820]
+position = Vector2(5.464481, 0)
+scale = Vector2(2.629781, 2.828125)
+texture = ExtResource("3_a2ywt")
+centered = false
+
+[node name="ParallaxPine1" type="ParallaxLayer" parent="." unique_id=1588318454]
+scale = Vector2(0.183, 0.183)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPine1" unique_id=600857325]
+position = Vector2(0, 546.4481)
+scale = Vector2(1.1953552, 1.3102134)
+texture = ExtResource("4_xfyjw")
+centered = false
+
+[node name="ParallaxPine2" type="ParallaxLayer" parent="." unique_id=303197095]
+scale = Vector2(0.183, 0.183)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPine2" unique_id=1216727053]
+position = Vector2(71.038246, 546.44806)
+scale = Vector2(1.0416665, 1.3102134)
+texture = ExtResource("5_8ufsg")
+centered = false
+
+[node name="ParallaxPine3" type="ParallaxLayer" parent="." unique_id=1354727273]
+scale = Vector2(0.183, 0.183)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPine3" unique_id=253502774]
+position = Vector2(-153.00545, 546.44806)
+scale = Vector2(1.0416665, 1.3102134)
+texture = ExtResource("6_l43lf")
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1776947537]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=271350953]
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 22.0
+text = "Score: 0"
+
+[node name="ParallaxPine4" type="ParallaxLayer" parent="." unique_id=1260093172]
+scale = Vector2(0.183, 0.183)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPine4" unique_id=819043051]
+position = Vector2(519.1257, 546.44806)
+scale = Vector2(1.1953552, 1.3102134)
+texture = ExtResource("4_xfyjw")
+centered = false
+
+[node name="ParallaxPine5" type="ParallaxLayer" parent="." unique_id=1186510040]
+scale = Vector2(0.183, 0.183)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPine5" unique_id=342715089]
+position = Vector2(1081.9672, 546.44806)
+scale = Vector2(1.1953552, 1.3102134)
+texture = ExtResource("4_xfyjw")
+centered = false
+
+[node name="ParallaxPine6" type="ParallaxLayer" parent="." unique_id=392460489]
+scale = Vector2(0.183, 0.183)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPine6" unique_id=1077512593]
+position = Vector2(655.73773, 540.98364)
+scale = Vector2(1.0416665, 1.3102134)
+texture = ExtResource("5_8ufsg")
+centered = false
+
+[node name="ParallaxPine7" type="ParallaxLayer" parent="." unique_id=2017646534]
+scale = Vector2(0.183, 0.183)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPine7" unique_id=1735640724]
+position = Vector2(1207.6503, 546.44806)
+scale = Vector2(1.0416665, 1.3102134)
+texture = ExtResource("5_8ufsg")
+centered = false
+
+[node name="ParallaxPine8" type="ParallaxLayer" parent="." unique_id=216921590]
+scale = Vector2(0.183, 0.183)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPine8" unique_id=682095215]
+position = Vector2(415.30057, 546.44806)
+scale = Vector2(1.0416665, 1.3102134)
+texture = ExtResource("6_l43lf")
+centered = false
+
+[node name="ParallaxPine9" type="ParallaxLayer" parent="." unique_id=1277367657]
+scale = Vector2(0.183, 0.183)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPine9" unique_id=1605990588]
+position = Vector2(967.21313, 546.44806)
+scale = Vector2(1.0416665, 1.3102134)
+texture = ExtResource("6_l43lf")
+centered = false
+
+[node name="Player" parent="." unique_id=100712526 instance=ExtResource("8_a2ywt")]
+position = Vector2(-101, 88)
+
+[node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("9_xfyjw")]
+position = Vector2(168, 88)
+ground_marker = NodePath("../GroundSpawnPoint")
+air_marker = NodePath("../AirSpawnPoint")
+
+[node name="GroundSpawnPoint" type="Marker2D" parent="." unique_id=684369799]
+position = Vector2(269, 171)
+
+[node name="AirSpawnPoint" type="Marker2D" parent="." unique_id=1427497336]
+position = Vector2(300, 158)

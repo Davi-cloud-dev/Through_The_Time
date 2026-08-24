@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://igt7n0mqdny1"]
+
+[ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://dgmxajv207m2v" path="res://Scenes/LevelVolcano.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="3_8gbba"]
+
+[node name="Node2D" type="Node2D" unique_id=596567164]
+
+[node name="CharacterBody2D" parent="." unique_id=100712526 instance=ExtResource("1_jjgbg")]
+position = Vector2(-110, 84)
+
+[node name="Level" parent="." unique_id=473952094 instance=ExtResource("2_bo1nx")]
+
+[node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("3_8gbba")]
+position = Vector2(168, 88)
+ground_marker = NodePath("../GroundSpawnPoint")
+air_marker = NodePath("../AirSpawnPoint")
+
+[node name="GroundSpawnPoint" type="Marker2D" parent="." unique_id=145141268]
+position = Vector2(269, 171)
+
+[node name="AirSpawnPoint" type="Marker2D" parent="." unique_id=1351310669]
+position = Vector2(300, 158)

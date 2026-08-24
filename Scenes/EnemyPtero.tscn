@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://be87on72oc8ht"]
+
+[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy_ptero.gd" id="1_6ggcp"]
+[ext_resource type="Texture2D" uid="uid://bxrmix4v64scq" path="res://Sprites/pteroenemy/ptero walk.png" id="2_dfo6t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70tdg"]
+atlas = ExtResource("2_dfo6t")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucuss"]
+atlas = ExtResource("2_dfo6t")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3go4c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70tdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucuss")
+}],
+"loop": 1,
+"name": &"PteroWalk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+
+[node name="EnemyPtero" type="Area2D" unique_id=809972958]
+position = Vector2(154, 85)
+script = ExtResource("1_6ggcp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1341516898]
+sprite_frames = SubResource("SpriteFrames_3go4c")
+animation = &"PteroWalk"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2102383149]
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=199780713]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

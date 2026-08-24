@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://d2050hltv6rpn"]
+
+[ext_resource type="Script" uid="uid://6vlgf8k38c7x" path="res://Scripts/level.gd" id="1_f84ut"]
+[ext_resource type="Texture2D" uid="uid://dlicqhqwe10l2" path="res://Sprites/FuturisticCity/background.png" id="2_eerjs"]
+[ext_resource type="Texture2D" uid="uid://ljwwqcf3e6y8" path="res://Sprites/FuturisticCity/city1plan.png" id="3_sshj0"]
+[ext_resource type="Texture2D" uid="uid://8anfqsixh4gb" path="res://Sprites/FuturisticCity/city2plan.png" id="4_sd5xl"]
+[ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="5_hma1s"]
+[ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="6_ek0su"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ctum"]
+size = Vector2(320, 3.125)
+
+[node name="LevelFuturisticCity" type="ParallaxBackground" unique_id=473952094 node_paths=PackedStringArray("score_label")]
+script = ExtResource("1_f84ut")
+target_score = 6000.0
+score_label = NodePath("CanvasLayer/Label")
+
+[node name="ParallaxBG" type="ParallaxLayer" parent="." unique_id=508612942]
+scale = Vector2(0.183, 0.183)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(7400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG" unique_id=1184123847]
+texture_repeat = 2
+position = Vector2(-5.4644814, 0)
+scale = Vector2(2.7669356, 2.823315)
+texture = ExtResource("2_eerjs")
+centered = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1838937243]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=154772293]
+position = Vector2(160, 184.5625)
+shape = SubResource("RectangleShape2D_2ctum")
+
+[node name="ParallaxCity1" type="ParallaxLayer" parent="." unique_id=1507396877]
+scale = Vector2(0.21, 0.21)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(3300, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxCity1" unique_id=1130122914]
+position = Vector2(4.7619047, -138.09525)
+scale = Vector2(2.3356009, 2.828125)
+texture = ExtResource("3_sshj0")
+centered = false
+
+[node name="ParallaxCity2" type="ParallaxLayer" parent="." unique_id=1851038167]
+scale = Vector2(0.21, 0.21)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(3300, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxCity2" unique_id=392540748]
+position = Vector2(4.7619047, -138.09525)
+scale = Vector2(2.3204837, 2.828125)
+texture = ExtResource("4_sd5xl")
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1261868871]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1499122886]
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 22.0
+text = "Score: 0"
+
+[node name="Player" parent="." unique_id=100712526 instance=ExtResource("5_hma1s")]
+position = Vector2(-106, 86)
+
+[node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("6_ek0su")]
+position = Vector2(168, 88)
+ground_marker = NodePath("../GroundSpawnPoint")
+air_marker = NodePath("../AirSpawnPoint")
+
+[node name="GroundSpawnPoint" type="Marker2D" parent="." unique_id=1551842581]
+position = Vector2(269, 171)
+
+[node name="AirSpawnPoint" type="Marker2D" parent="." unique_id=2031777811]
+position = Vector2(300, 158)
