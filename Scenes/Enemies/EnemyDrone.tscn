@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://hduu0yf10mu7"]
+
+[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy.gd" id="1_bj1f2"]
+[ext_resource type="Texture2D" uid="uid://othbgjb5mkf0" path="res://Sprites/Enemies/EnemyDrone.png" id="2_fxjw8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnft5"]
+atlas = ExtResource("2_fxjw8")
+region = Rect2(0, 0, 160, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go6d1"]
+atlas = ExtResource("2_fxjw8")
+region = Rect2(160, 0, 160, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04eiy"]
+atlas = ExtResource("2_fxjw8")
+region = Rect2(320, 0, 160, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_div0x"]
+atlas = ExtResource("2_fxjw8")
+region = Rect2(480, 0, 160, 140)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_anv12"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnft5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go6d1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04eiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_div0x")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyDrone" type="Area2D" unique_id=809972958]
+position = Vector2(154, 85)
+scale = Vector2(-1, 1)
+script = ExtResource("1_bj1f2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2102383149]
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=199780713]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1677393593]
+scale = Vector2(-0.12857264, 0.14320245)
+sprite_frames = SubResource("SpriteFrames_anv12")
+autoplay = "default"
+frame_progress = 0.5968
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

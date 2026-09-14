@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://1routkxoccvl"]
+
+[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy.gd" id="1_onvti"]
+[ext_resource type="Texture2D" uid="uid://dcsinvssm8paj" path="res://Sprites/Enemies/EnemyRobot.png" id="2_khos1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tggik"]
+atlas = ExtResource("2_khos1")
+region = Rect2(0, 0, 95, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7qnk"]
+atlas = ExtResource("2_khos1")
+region = Rect2(95, 0, 95, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ill0"]
+atlas = ExtResource("2_khos1")
+region = Rect2(190, 0, 95, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybm42"]
+atlas = ExtResource("2_khos1")
+region = Rect2(285, 0, 95, 85)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7t07o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tggik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7qnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ill0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybm42")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyRobot" type="Area2D" unique_id=809972958]
+position = Vector2(154, 85)
+scale = Vector2(-1, 1)
+script = ExtResource("1_onvti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2102383149]
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=199780713]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=46092219]
+position = Vector2(0, 1)
+scale = Vector2(0.33318588, 0.25386217)
+sprite_frames = SubResource("SpriteFrames_7t07o")
+autoplay = "default"
+frame_progress = 0.9726733
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

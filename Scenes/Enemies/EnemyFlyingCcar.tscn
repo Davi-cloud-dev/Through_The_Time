@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ddrufmb82j76y"]
+
+[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy.gd" id="1_202xl"]
+[ext_resource type="Texture2D" uid="uid://br1gkfdwds32v" path="res://Sprites/Enemies/EnemyFlyingCar.png" id="2_5fbvi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vyj7"]
+atlas = ExtResource("2_5fbvi")
+region = Rect2(0, 0, 262, 115)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_883ci"]
+atlas = ExtResource("2_5fbvi")
+region = Rect2(262, 0, 262, 115)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nl4yq"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_7vyj7")
+}, {
+"duration": 100000.0,
+"texture": SubResource("AtlasTexture_883ci")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyFlyingCar" type="Area2D" unique_id=1413359169]
+position = Vector2(154, 85)
+scale = Vector2(-1, 1)
+script = ExtResource("1_202xl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1218061363]
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=696426630]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1106876890]
+position = Vector2(0, 3.9999998)
+scale = Vector2(0.09688973, 0.116567306)
+sprite_frames = SubResource("SpriteFrames_nl4yq")
+autoplay = "default"
+frame = 1
+frame_progress = 0.00843383
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

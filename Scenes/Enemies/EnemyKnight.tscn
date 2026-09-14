@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://fxibpcntfew6"]
+
+[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy.gd" id="1_0pu6m"]
+[ext_resource type="Texture2D" uid="uid://dgevs7l15hqgn" path="res://Sprites/Enemies/PlayerCastleRun.png" id="2_2sbs0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44ly7"]
+atlas = ExtResource("2_2sbs0")
+region = Rect2(0, 0, 100, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdv4s"]
+atlas = ExtResource("2_2sbs0")
+region = Rect2(100, 0, 100, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fevot"]
+atlas = ExtResource("2_2sbs0")
+region = Rect2(200, 0, 100, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsj7t"]
+atlas = ExtResource("2_2sbs0")
+region = Rect2(300, 0, 100, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn1a8"]
+atlas = ExtResource("2_2sbs0")
+region = Rect2(400, 0, 100, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbxtp"]
+atlas = ExtResource("2_2sbs0")
+region = Rect2(500, 0, 100, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkgyn"]
+atlas = ExtResource("2_2sbs0")
+region = Rect2(600, 0, 100, 78)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_anv12"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_44ly7")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_tdv4s")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_fevot")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_nsj7t")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_vn1a8")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_cbxtp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkgyn")
+}],
+"loop": 1,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="EnemyKnight" type="Area2D" unique_id=809972958]
+position = Vector2(154, 85)
+scale = Vector2(-1, 1)
+script = ExtResource("1_0pu6m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2102383149]
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=199780713]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1920381181]
+position = Vector2(0, 1.9999998)
+scale = Vector2(0.27175224, 0.32441083)
+sprite_frames = SubResource("SpriteFrames_anv12")
+animation = &"Walk"
+autoplay = "Walk"
+frame_progress = 0.5370573
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

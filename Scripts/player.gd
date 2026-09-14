@@ -12,20 +12,25 @@ func _ready():
 	add_to_group("Player")
 
 func _physics_process(delta: float) -> void:
+	# 1. Gravidade
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+	# 2. Pular
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
 		velocity.y = JUMP_VELOCITY
 
+	# 3. Agachar
 	if Input.is_action_pressed("Crouch") and is_on_floor():
 		is_crouching = true
 	else:
 		is_crouching = false
 
+	# 4. Alternar as Colisões (Liga uma e desliga a outra)
 	stand_collision.disabled = is_crouching
 	crouch_collision.disabled = not is_crouching
 
+	# 5. Animações
 	if not is_on_floor():
 		anim.play("Jump")
 	elif is_crouching:

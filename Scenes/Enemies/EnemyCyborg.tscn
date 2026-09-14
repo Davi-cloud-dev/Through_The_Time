@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://der063ss7jn3p"]
+
+[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy.gd" id="1_ktv42"]
+[ext_resource type="Texture2D" uid="uid://cmrx583d8kqs7" path="res://Sprites/Enemies/EnemyCyborg/000.png" id="2_dbtcb"]
+[ext_resource type="Texture2D" uid="uid://cqhbyxd71vfmd" path="res://Sprites/Enemies/EnemyCyborg/001.png" id="3_nkpeu"]
+[ext_resource type="Texture2D" uid="uid://bo1pbefu6dx1l" path="res://Sprites/Enemies/EnemyCyborg/002.png" id="4_a30p0"]
+[ext_resource type="Texture2D" uid="uid://ccfk5ktoyyemy" path="res://Sprites/Enemies/EnemyCyborg/003.png" id="5_y3ttd"]
+[ext_resource type="Texture2D" uid="uid://dxks73ltnf3eu" path="res://Sprites/Enemies/EnemyCyborg/004.png" id="6_8sv2f"]
+[ext_resource type="Texture2D" uid="uid://c8wdd6j6ry76r" path="res://Sprites/Enemies/EnemyCyborg/005.png" id="7_jvsud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08l3h"]
+atlas = ExtResource("2_dbtcb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bvmk"]
+atlas = ExtResource("3_nkpeu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u21x4"]
+atlas = ExtResource("4_a30p0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se77b"]
+atlas = ExtResource("5_y3ttd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hufwv"]
+atlas = ExtResource("6_8sv2f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtart"]
+atlas = ExtResource("7_jvsud")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_anv12"]
+animations = [{
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_08l3h")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_6bvmk")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_u21x4")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_se77b")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_hufwv")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_wtart")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyCyborg" type="Area2D" unique_id=1840577262]
+position = Vector2(154, 85)
+scale = Vector2(-1, 1)
+script = ExtResource("1_ktv42")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=695175135]
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=574400640]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2051197483]
+scale = Vector2(0.46945876, 0.46824148)
+sprite_frames = SubResource("SpriteFrames_anv12")
+frame_progress = 0.8783375
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

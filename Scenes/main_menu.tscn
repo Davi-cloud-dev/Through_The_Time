@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bcfn6vepdudmi"]
+
+[ext_resource type="Script" uid="uid://dca2jgy08mxsd" path="res://main_menu.gd" id="1_28flt"]
+
+[node name="MainMenu" type="Control" unique_id=1988178574]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_28flt")
+
+[node name="Play" type="Button" parent="." unique_id=659847908]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 44.0
+offset_right = 179.0
+offset_bottom = 75.0
+text = "Jogar"
+
+[node name="Quit" type="Button" parent="." unique_id=641362758]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 93.0
+offset_right = 172.0
+offset_bottom = 124.0
+text = "Sair"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

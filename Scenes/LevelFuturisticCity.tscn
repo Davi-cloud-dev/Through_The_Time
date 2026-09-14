@@ -1,78 +1,236 @@
 [gd_scene format=3 uid="uid://d2050hltv6rpn"]
 
-[ext_resource type="Script" uid="uid://6vlgf8k38c7x" path="res://Scripts/level.gd" id="1_f84ut"]
-[ext_resource type="Texture2D" uid="uid://dlicqhqwe10l2" path="res://Sprites/FuturisticCity/background.png" id="2_eerjs"]
-[ext_resource type="Texture2D" uid="uid://ljwwqcf3e6y8" path="res://Sprites/FuturisticCity/city1plan.png" id="3_sshj0"]
-[ext_resource type="Texture2D" uid="uid://8anfqsixh4gb" path="res://Sprites/FuturisticCity/city2plan.png" id="4_sd5xl"]
-[ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="5_hma1s"]
-[ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="6_ek0su"]
+[ext_resource type="Script" uid="uid://6vlgf8k38c7x" path="res://Scripts/level.gd" id="1_level"]
+[ext_resource type="Texture2D" uid="uid://dlicqhqwe10l2" path="res://Sprites/FuturisticCity/background.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://cblnhca1w7e7b" path="res://Sprites/FuturisticCity/sun.png" id="3_sun"]
+[ext_resource type="Texture2D" uid="uid://cno0xblhymawn" path="res://Sprites/FuturisticCity/light.png" id="4_light"]
+[ext_resource type="Texture2D" uid="uid://c265sm3lcx2wo" path="res://Sprites/FuturisticCity/city4plan.png" id="5_city4"]
+[ext_resource type="Texture2D" uid="uid://ese4ulrqsktj" path="res://Sprites/FuturisticCity/city3plan.png" id="6_city3"]
+[ext_resource type="Texture2D" uid="uid://8anfqsixh4gb" path="res://Sprites/FuturisticCity/city2plan.png" id="7_city2"]
+[ext_resource type="Texture2D" uid="uid://sax5yldwnp34" path="res://Sprites/FuturisticCity/smog2.png" id="8_smog2"]
+[ext_resource type="Texture2D" uid="uid://ljwwqcf3e6y8" path="res://Sprites/FuturisticCity/city1plan.png" id="9_city1"]
+[ext_resource type="Texture2D" uid="uid://b6548yk6jew7x" path="res://Sprites/FuturisticCity/smog1.png" id="10_smog1"]
+[ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="11_player"]
+[ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="12_spawner"]
+[ext_resource type="PackedScene" uid="uid://der063ss7jn3p" path="res://Scenes/Enemies/EnemyCyborg.tscn" id="13_i4grl"]
+[ext_resource type="PackedScene" uid="uid://ddrufmb82j76y" path="res://Scenes/Enemies/EnemyFlyingCcar.tscn" id="13_qmhw4"]
+[ext_resource type="Script" uid="uid://drbw54vek21vu" path="res://Scenes/phase_warning.gd" id="15_5gra0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ctum"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(320, 3.125)
 
-[node name="LevelFuturisticCity" type="ParallaxBackground" unique_id=473952094 node_paths=PackedStringArray("score_label")]
-script = ExtResource("1_f84ut")
-target_score = 6000.0
+[sub_resource type="LabelSettings" id="LabelSettings_n2ko0"]
+font_size = 19
+
+[node name="LevelFuturisticCity" type="ParallaxBackground" unique_id=473952094 node_paths=PackedStringArray("score_label", "end_screen")]
+script = ExtResource("1_level")
+target_score = 12000.0
 score_label = NodePath("CanvasLayer/Label")
+is_final_level = true
+end_screen = NodePath("EndScreen")
 
-[node name="ParallaxBG" type="ParallaxLayer" parent="." unique_id=508612942]
-scale = Vector2(0.183, 0.183)
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(7400, 0)
+[node name="ParallaxBG" type="ParallaxLayer" parent="." unique_id=352294647]
+motion_scale = Vector2(0.03, 0.03)
+motion_mirroring = Vector2(320, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG" unique_id=1184123847]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG" unique_id=551155587]
 texture_repeat = 2
-position = Vector2(-5.4644814, 0)
-scale = Vector2(2.7669356, 2.823315)
-texture = ExtResource("2_eerjs")
+scale = Vector2(0.5079365, 0.5)
+texture = ExtResource("2_bg")
 centered = false
 
-[node name="Ground" type="StaticBody2D" parent="." unique_id=1838937243]
+[node name="ParallaxSun" type="ParallaxLayer" parent="." unique_id=699740805]
+motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(320, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=154772293]
-position = Vector2(160, 184.5625)
-shape = SubResource("RectangleShape2D_2ctum")
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxSun" unique_id=1595948962]
+texture_repeat = 2
+scale = Vector2(0.5079365, 0.5)
+texture = ExtResource("3_sun")
+centered = false
 
-[node name="ParallaxCity1" type="ParallaxLayer" parent="." unique_id=1507396877]
-scale = Vector2(0.21, 0.21)
+[node name="ParallaxLight" type="ParallaxLayer" parent="." unique_id=82981588]
+motion_scale = Vector2(0.08, 0.08)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLight" unique_id=339855546]
+texture_repeat = 2
+scale = Vector2(0.5079365, 0.5)
+texture = ExtResource("4_light")
+centered = false
+
+[node name="ParallaxCity4" type="ParallaxLayer" parent="." unique_id=604418981]
+motion_scale = Vector2(0.12, 0.12)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxCity4" unique_id=1715666052]
+texture_repeat = 2
+scale = Vector2(0.5079365, 0.5)
+texture = ExtResource("5_city4")
+centered = false
+
+[node name="ParallaxCity3" type="ParallaxLayer" parent="." unique_id=1606008374]
 motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(3300, 0)
+motion_mirroring = Vector2(320, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxCity1" unique_id=1130122914]
-position = Vector2(4.7619047, -138.09525)
-scale = Vector2(2.3356009, 2.828125)
-texture = ExtResource("3_sshj0")
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxCity3" unique_id=251692123]
+texture_repeat = 2
+scale = Vector2(0.5079365, 0.5)
+texture = ExtResource("6_city3")
 centered = false
 
-[node name="ParallaxCity2" type="ParallaxLayer" parent="." unique_id=1851038167]
-scale = Vector2(0.21, 0.21)
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(3300, 0)
+[node name="ParallaxCity2" type="ParallaxLayer" parent="." unique_id=1926854507]
+motion_scale = Vector2(0.32, 0.32)
+motion_mirroring = Vector2(320, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxCity2" unique_id=392540748]
-position = Vector2(4.7619047, -138.09525)
-scale = Vector2(2.3204837, 2.828125)
-texture = ExtResource("4_sd5xl")
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxCity2" unique_id=1267755916]
+texture_repeat = 2
+scale = Vector2(0.5079365, 0.5)
+texture = ExtResource("7_city2")
 centered = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1261868871]
+[node name="ParallaxSmog2" type="ParallaxLayer" parent="." unique_id=2032997857]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(320, 0)
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=1499122886]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxSmog2" unique_id=125202814]
+texture_repeat = 2
+scale = Vector2(0.5079365, 0.5)
+texture = ExtResource("8_smog2")
+centered = false
+
+[node name="ParallaxCity1" type="ParallaxLayer" parent="." unique_id=496970605]
+motion_scale = Vector2(0.55, 0.55)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxCity1" unique_id=378163499]
+texture_repeat = 2
+scale = Vector2(0.5079365, 0.5)
+texture = ExtResource("9_city1")
+centered = false
+
+[node name="ParallaxSmog1" type="ParallaxLayer" parent="." unique_id=2092663402]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxSmog1" unique_id=1711778686]
+texture_repeat = 2
+scale = Vector2(0.5079365, 0.5)
+texture = ExtResource("10_smog1")
+centered = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1744871948]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1015972144]
+position = Vector2(160, 182)
+shape = SubResource("RectangleShape2D_ground")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1843660411]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=2068497239]
 offset_top = -1.0
-offset_right = 40.0
+offset_right = 100.0
 offset_bottom = 22.0
 text = "Score: 0"
 
-[node name="Player" parent="." unique_id=100712526 instance=ExtResource("5_hma1s")]
+[node name="Player" parent="." unique_id=100712526 instance=ExtResource("11_player")]
 position = Vector2(-106, 86)
 
-[node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("6_ek0su")]
+[node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("12_spawner")]
 position = Vector2(168, 88)
+ground_enemy_scene = ExtResource("13_i4grl")
+air_enemy_scene = ExtResource("13_qmhw4")
 ground_marker = NodePath("../GroundSpawnPoint")
 air_marker = NodePath("../AirSpawnPoint")
 
-[node name="GroundSpawnPoint" type="Marker2D" parent="." unique_id=1551842581]
-position = Vector2(269, 171)
+[node name="GroundSpawnPoint" type="Marker2D" parent="." unique_id=524549743]
+position = Vector2(311.85, 171)
 
-[node name="AirSpawnPoint" type="Marker2D" parent="." unique_id=2031777811]
-position = Vector2(300, 158)
+[node name="AirSpawnPoint" type="Marker2D" parent="." unique_id=140256654]
+position = Vector2(311.23, 158)
+
+[node name="EndScreen" type="CanvasLayer" parent="." unique_id=2091285413]
+process_mode = 3
+layer = 20
+visible = false
+
+[node name="Overlay" type="ColorRect" parent="EndScreen" unique_id=1418462927]
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.72)
+
+[node name="Panel" type="ColorRect" parent="EndScreen" unique_id=1644571046]
+offset_left = 40.0
+offset_top = 30.0
+offset_right = 280.0
+offset_bottom = 155.0
+color = Color(0.08, 0.07, 0.13, 0.96)
+
+[node name="Title" type="Label" parent="EndScreen/Panel" unique_id=280304228]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 12.0
+offset_right = 230.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+text = "FIM DA VIAGEM!"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="EndScreen/Panel" unique_id=858766512]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 42.0
+offset_right = 230.0
+offset_bottom = 62.0
+text = "Você chegou ao futuro."
+horizontal_alignment = 1
+
+[node name="FinalScore" type="Label" parent="EndScreen/Panel" unique_id=721938475]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 64.0
+offset_right = 230.0
+offset_bottom = 84.0
+text = "Pontuação final: 6000"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="EndScreen/Panel" unique_id=1706550350]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 92.0
+offset_right = 114.0
+offset_bottom = 118.0
+text = "Jogar de novo"
+
+[node name="QuitButton" type="Button" parent="EndScreen/Panel" unique_id=270211668]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 92.0
+offset_right = 222.0
+offset_bottom = 118.0
+text = "Sair"
+
+[node name="PhaseWarning" type="CanvasLayer" parent="." unique_id=1846560681]
+script = ExtResource("15_5gra0")
+
+[node name="ColorRect" type="ColorRect" parent="PhaseWarning" unique_id=2116805825]
+offset_top = 67.0
+offset_right = 320.0
+offset_bottom = 114.0
+color = Color(0.15199637, 0.15199637, 0.15199631, 1)
+
+[node name="Label" type="Label" parent="PhaseWarning" unique_id=1877150041]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -14.0
+offset_right = 61.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Era Futurista"
+label_settings = SubResource("LabelSettings_n2ko0")

@@ -1,11 +1,20 @@
 [gd_scene format=3 uid="uid://be87on72oc8ht"]
 
-[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy_ptero.gd" id="1_6ggcp"]
+[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy.gd" id="1_6ggcp"]
 [ext_resource type="Texture2D" uid="uid://bxrmix4v64scq" path="res://Sprites/pteroenemy/ptero walk.png" id="2_dfo6t"]
+[ext_resource type="Texture2D" uid="uid://csw0tcxb7f2oy" path="res://Sprites/pteroenemy/ptero atack.png" id="3_w0to3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70tdg"]
 atlas = ExtResource("2_dfo6t")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13a8p"]
+atlas = ExtResource("3_w0to3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6030"]
+atlas = ExtResource("3_w0to3")
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucuss"]
 atlas = ExtResource("2_dfo6t")
@@ -18,10 +27,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_70tdg")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_13a8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6030")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ucuss")
 }],
 "loop": 1,
-"name": &"PteroWalk",
+"name": &"Walk",
 "speed": 5.0
 }]
 
@@ -33,7 +48,9 @@ script = ExtResource("1_6ggcp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1341516898]
 sprite_frames = SubResource("SpriteFrames_3go4c")
-animation = &"PteroWalk"
+animation = &"Walk"
+autoplay = "Walk"
+frame_progress = 0.4434833
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2102383149]

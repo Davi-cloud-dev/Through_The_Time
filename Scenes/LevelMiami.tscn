@@ -1,76 +1,97 @@
 [gd_scene format=3 uid="uid://b5b5b1tcku1qi"]
 
 [ext_resource type="Script" uid="uid://6vlgf8k38c7x" path="res://Scripts/level.gd" id="1_lkgg5"]
-[ext_resource type="Texture2D" uid="uid://cpg3qvhirws0u" path="res://Sprites/Miami/Layers/back.png" id="2_42xsp"]
-[ext_resource type="PackedScene" uid="uid://d2050hltv6rpn" path="res://Scenes/LevelFuturisticCity.tscn" id="2_n8abu"]
-[ext_resource type="Texture2D" uid="uid://d03al060xsbdu" path="res://Sprites/Miami/Layers/buildings.png" id="3_n8abu"]
-[ext_resource type="Texture2D" uid="uid://bcqywqclm2x11" path="res://Sprites/Miami/Layers/highway.png" id="4_qys06"]
-[ext_resource type="Texture2D" uid="uid://dvkpdjd7s65kv" path="res://Sprites/Miami/Layers/palm-tree.png" id="5_ncvef"]
-[ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="7_n8abu"]
-[ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="8_qys06"]
+[ext_resource type="Texture2D" uid="uid://cpg3qvhirws0u" path="res://Sprites/Miami/Layers/back.png" id="2_back"]
+[ext_resource type="PackedScene" uid="uid://d2050hltv6rpn" path="res://Scenes/LevelFuturisticCity.tscn" id="2_next"]
+[ext_resource type="Texture2D" uid="uid://ccb5o5ktas8wu" path="res://Sprites/Miami/Layers/sun.png" id="3_sun"]
+[ext_resource type="Texture2D" uid="uid://d03al060xsbdu" path="res://Sprites/Miami/Layers/buildings.png" id="4_buildings"]
+[ext_resource type="Texture2D" uid="uid://c7uyjr7srare7" path="res://Sprites/Miami/Layers/palms.png" id="5_palms"]
+[ext_resource type="Texture2D" uid="uid://bcqywqclm2x11" path="res://Sprites/Miami/Layers/highway.png" id="6_highway"]
+[ext_resource type="Texture2D" uid="uid://dvkpdjd7s65kv" path="res://Sprites/Miami/Layers/palm-tree.png" id="7_tree"]
+[ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="8_player"]
+[ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="9_spawner"]
+[ext_resource type="PackedScene" uid="uid://mpu7ixmu0ej3" path="res://Scenes/Enemies/EnemyCar.tscn" id="11_wy3t4"]
+[ext_resource type="PackedScene" uid="uid://c13rrf82gemp7" path="res://Scenes/Enemies/EnemyHelicopter.tscn" id="12_ih3fe"]
+[ext_resource type="Script" uid="uid://drbw54vek21vu" path="res://Scenes/phase_warning.gd" id="13_ih3fe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
 size = Vector2(320, 3.125)
 
+[sub_resource type="LabelSettings" id="LabelSettings_nl4yq"]
+font_size = 19
+
 [node name="LevelMiami" type="ParallaxBackground" unique_id=473952094 node_paths=PackedStringArray("score_label")]
 script = ExtResource("1_lkgg5")
-target_score = 5000.0
-next_scene = ExtResource("2_n8abu")
+target_score = 10000.0
+next_scene = ExtResource("2_next")
 score_label = NodePath("CanvasLayer/Label")
 
-[node name="ParallaxBG" type="ParallaxLayer" parent="." unique_id=455257538]
-position = Vector2(2, 1)
-scale = Vector2(0.42300016, 0.183)
-motion_mirroring = Vector2(224, 0)
+[node name="ParallaxBG" type="ParallaxLayer" parent="." unique_id=1188046795]
+motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(168, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG" unique_id=1762938153]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG" unique_id=255128536]
 texture_repeat = 2
-position = Vector2(-5.4644814, 0)
-scale = Vector2(3.33, 4.228)
-texture = ExtResource("2_42xsp")
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_back")
+centered = false
+
+[node name="ParallaxSun" type="ParallaxLayer" parent="." unique_id=451859502]
+motion_scale = Vector2(0.08, 0.08)
+motion_mirroring = Vector2(600, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxSun" unique_id=1778487218]
+texture_repeat = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_sun")
+centered = false
+
+[node name="ParallaxBuildings" type="ParallaxLayer" parent="." unique_id=1308552267]
+motion_scale = Vector2(0.15, 0.15)
+motion_mirroring = Vector2(192, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBuildings" unique_id=676470729]
+texture_repeat = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_buildings")
+centered = false
+
+[node name="ParallaxPalms" type="ParallaxLayer" parent="." unique_id=362519790]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(168, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPalms" unique_id=1373356198]
+texture_repeat = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_palms")
+centered = false
+
+[node name="ParallaxHighway" type="ParallaxLayer" parent="." unique_id=2108404365]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(672, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxHighway" unique_id=2042676641]
+texture_repeat = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_highway")
+centered = false
+
+[node name="ParallaxPalmTree" type="ParallaxLayer" parent="." unique_id=24530558]
+motion_scale = Vector2(0.85, 0.85)
+motion_mirroring = Vector2(336, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxPalmTree" unique_id=1141710971]
+texture_repeat = 2
+position = Vector2(65, 24)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("7_tree")
 centered = false
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=163026559]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=339863211]
-position = Vector2(160, 184.5625)
+position = Vector2(160, 182)
 shape = SubResource("RectangleShape2D_anv12")
-
-[node name="ParallaxBuildings" type="ParallaxLayer" parent="." unique_id=138733750]
-position = Vector2(2, 1)
-scale = Vector2(0.42300016, 0.183)
-motion_mirroring = Vector2(224, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBuildings" unique_id=924382233]
-texture_repeat = 2
-position = Vector2(-4.7281303, 0)
-scale = Vector2(2.5997198, 4.2099104)
-texture = ExtResource("3_n8abu")
-centered = false
-
-[node name="ParallaxHighway" type="ParallaxLayer" parent="." unique_id=109950759]
-position = Vector2(2, 1)
-scale = Vector2(0.42300016, 0.183)
-motion_mirroring = Vector2(224, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxHighway" unique_id=1301683958]
-texture_repeat = 2
-position = Vector2(-5.4644814, 0)
-scale = Vector2(0.7417438, 4.199457)
-texture = ExtResource("4_qys06")
-centered = false
-
-[node name="ParallaxPalmTree" type="ParallaxLayer" parent="." unique_id=2024555993]
-position = Vector2(2, 1)
-scale = Vector2(0.42300016, 0.183)
-motion_mirroring = Vector2(224, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxPalmTree" unique_id=366963510]
-texture_repeat = 2
-position = Vector2(-14.184392, 213.11476)
-scale = Vector2(1.7358857, 3.8431525)
-texture = ExtResource("5_ncvef")
-centered = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=227437020]
 
@@ -80,16 +101,42 @@ offset_right = 40.0
 offset_bottom = 22.0
 text = "Score: 0"
 
-[node name="Player" parent="." unique_id=100712526 instance=ExtResource("7_n8abu")]
+[node name="Player" parent="." unique_id=100712526 instance=ExtResource("8_player")]
 position = Vector2(-110, 86)
 
-[node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("8_qys06")]
+[node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("9_spawner")]
 position = Vector2(168, 88)
+ground_enemy_scene = ExtResource("11_wy3t4")
+air_enemy_scene = ExtResource("12_ih3fe")
 ground_marker = NodePath("../GroundSpawnPoint")
 air_marker = NodePath("../AirSpawnPoint")
 
 [node name="GroundSpawnPoint" type="Marker2D" parent="." unique_id=332949232]
-position = Vector2(269, 171)
+position = Vector2(312.695, 171)
 
 [node name="AirSpawnPoint" type="Marker2D" parent="." unique_id=570899471]
-position = Vector2(300, 158)
+position = Vector2(313, 158)
+
+[node name="PhaseWarning" type="CanvasLayer" parent="." unique_id=557882316]
+script = ExtResource("13_ih3fe")
+
+[node name="ColorRect" type="ColorRect" parent="PhaseWarning" unique_id=1479585793]
+offset_top = 67.0
+offset_right = 320.0
+offset_bottom = 114.0
+color = Color(0.15199637, 0.15199637, 0.15199631, 1)
+
+[node name="Label" type="Label" parent="PhaseWarning" unique_id=1771974501]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -14.0
+offset_right = 61.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Era Moderna"
+label_settings = SubResource("LabelSettings_nl4yq")

@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://hjny2pcc05fr"]
+
+[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy.gd" id="1_afm12"]
+[ext_resource type="Texture2D" uid="uid://cssfm4dtcjqtx" path="res://Sprites/Enemies/EnemySnake.png" id="2_1hqsm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duqw0"]
+atlas = ExtResource("2_1hqsm")
+region = Rect2(0, 0, 98, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3ck6"]
+atlas = ExtResource("2_1hqsm")
+region = Rect2(98, 0, 98, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkl7u"]
+atlas = ExtResource("2_1hqsm")
+region = Rect2(196, 0, 98, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78ovn"]
+atlas = ExtResource("2_1hqsm")
+region = Rect2(294, 0, 98, 67)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_anv12"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duqw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3ck6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkl7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78ovn")
+}],
+"loop": 1,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="EnemySnake" type="Area2D" unique_id=809972958]
+position = Vector2(154, 85)
+script = ExtResource("1_afm12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2102383149]
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=199780713]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1108159958]
+position = Vector2(-1.9999998, 3)
+scale = Vector2(0.27737713, 0.34330848)
+sprite_frames = SubResource("SpriteFrames_anv12")
+animation = &"Walk"
+autoplay = "Walk"
+frame_progress = 0.9918582
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

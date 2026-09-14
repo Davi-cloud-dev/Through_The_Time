@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c13rrf82gemp7"]
+
+[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy.gd" id="1_d276h"]
+[ext_resource type="Texture2D" uid="uid://birnv21j1k4wf" path="res://Sprites/Enemies/EnemyHelicopter.png" id="2_qdb1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3oy37"]
+atlas = ExtResource("2_qdb1o")
+region = Rect2(0, 0, 166, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rvsv"]
+atlas = ExtResource("2_qdb1o")
+region = Rect2(166, 0, 166, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx5dk"]
+atlas = ExtResource("2_qdb1o")
+region = Rect2(332, 0, 166, 77)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qit1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3oy37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rvsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx5dk")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyHelicopter" type="Area2D" unique_id=1413359169]
+position = Vector2(154, 85)
+scale = Vector2(-1, 1)
+script = ExtResource("1_d276h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1218061363]
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=696426630]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1106876890]
+position = Vector2(0, 3.9999998)
+scale = Vector2(0.15578613, 0.16852693)
+sprite_frames = SubResource("SpriteFrames_qit1c")
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

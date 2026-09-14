@@ -7,13 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://b7d0440dmybxr" path="res://Sprites/AncientTemple/Plan 4.png" id="4_64svw"]
 [ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="6_2qb78"]
 [ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="7_64svw"]
+[ext_resource type="PackedScene" uid="uid://d2ecbatqsigu5" path="res://Scenes/Enemies/EnemyBat.tscn" id="7_mvqfy"]
+[ext_resource type="PackedScene" uid="uid://hjny2pcc05fr" path="res://Scenes/Enemies/EnemySnake.tscn" id="7_uxrbt"]
+[ext_resource type="Script" uid="uid://drbw54vek21vu" path="res://Scenes/phase_warning.gd" id="10_14hy7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
 size = Vector2(320, 6.25)
 
+[sub_resource type="LabelSettings" id="LabelSettings_onocr"]
+font_size = 19
+
 [node name="LevelAncientTemple" type="ParallaxBackground" unique_id=473952094 node_paths=PackedStringArray("score_label")]
 script = ExtResource("1_3reek")
-target_score = 2000.0
+target_score = 4000.0
 next_scene = ExtResource("2_2qb78")
 score_label = NodePath("CanvasLayer/Label")
 
@@ -36,6 +42,7 @@ texture = ExtResource("3_2qb78")
 centered = false
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=163026559]
+position = Vector2(1, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=339863211]
 position = Vector2(159, 181)
@@ -67,16 +74,42 @@ offset_right = 40.0
 offset_bottom = 22.0
 text = "Score: 0"
 
-[node name="Player" parent="." unique_id=100712526 instance=ExtResource("6_2qb78")]
-position = Vector2(-102, 84)
-
 [node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("7_64svw")]
 position = Vector2(168, 88)
+ground_enemy_scene = ExtResource("7_uxrbt")
+air_enemy_scene = ExtResource("7_mvqfy")
 ground_marker = NodePath("../GroundSpawnPoint")
 air_marker = NodePath("../AirSpawnPoint")
 
 [node name="GroundSpawnPoint" type="Marker2D" parent="." unique_id=1186343941]
-position = Vector2(269, 166)
+position = Vector2(311.78, 166)
 
 [node name="AirSpawnPoint" type="Marker2D" parent="." unique_id=1843394122]
-position = Vector2(300, 153)
+position = Vector2(311.685, 153)
+
+[node name="Player" parent="." unique_id=100712526 instance=ExtResource("6_2qb78")]
+position = Vector2(-111, 84)
+
+[node name="PhaseWarning" type="CanvasLayer" parent="." unique_id=517497350]
+script = ExtResource("10_14hy7")
+
+[node name="ColorRect" type="ColorRect" parent="PhaseWarning" unique_id=173488527]
+offset_top = 67.0
+offset_right = 320.0
+offset_bottom = 114.0
+color = Color(0.15199637, 0.15199637, 0.15199631, 1)
+
+[node name="Label" type="Label" parent="PhaseWarning" unique_id=340331957]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -15.0
+offset_right = 77.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Era dos Filósofos"
+label_settings = SubResource("LabelSettings_onocr")

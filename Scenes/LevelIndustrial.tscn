@@ -2,61 +2,77 @@
 
 [ext_resource type="Script" uid="uid://6vlgf8k38c7x" path="res://Scripts/level.gd" id="1_ml3sd"]
 [ext_resource type="PackedScene" uid="uid://b5b5b1tcku1qi" path="res://Scenes/LevelMiami.tscn" id="2_c00ap"]
-[ext_resource type="Texture2D" uid="uid://d1o7pk55m3rw5" path="res://Sprites/Industrial/bg.png" id="3_2mdnl"]
-[ext_resource type="Texture2D" uid="uid://dhvf8nd3m68gt" path="res://Sprites/Industrial/buildings.png" id="3_ec8db"]
-[ext_resource type="Texture2D" uid="uid://bed0kl0jfgitt" path="res://Sprites/Industrial/skill-foreground.png" id="5_tovxd"]
-[ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="6_c00ap"]
-[ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="7_ec8db"]
+[ext_resource type="Texture2D" uid="uid://d1o7pk55m3rw5" path="res://Sprites/Industrial/bg.png" id="3_bg"]
+[ext_resource type="Texture2D" uid="uid://h3ih4nqaqrd" path="res://Sprites/Industrial/far-buildings.png" id="4_far"]
+[ext_resource type="Texture2D" uid="uid://dhvf8nd3m68gt" path="res://Sprites/Industrial/buildings.png" id="5_buildings"]
+[ext_resource type="Texture2D" uid="uid://bed0kl0jfgitt" path="res://Sprites/Industrial/skill-foreground.png" id="6_foreground"]
+[ext_resource type="PackedScene" uid="uid://ctvlg4hebe68v" path="res://Scenes/Player.tscn" id="7_player"]
+[ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="8_spawner"]
+[ext_resource type="PackedScene" uid="uid://1routkxoccvl" path="res://Scenes/Enemies/EnemyRobot.tscn" id="9_4d5s1"]
+[ext_resource type="PackedScene" uid="uid://hduu0yf10mu7" path="res://Scenes/Enemies/EnemyDrone.tscn" id="10_w2bpo"]
+[ext_resource type="Script" uid="uid://drbw54vek21vu" path="res://Scenes/phase_warning.gd" id="11_w2bpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
 size = Vector2(320, 3.125)
 
+[sub_resource type="LabelSettings" id="LabelSettings_516mq"]
+font_size = 19
+
 [node name="LevelIndustrial" type="ParallaxBackground" unique_id=473952094 node_paths=PackedStringArray("score_label")]
 script = ExtResource("1_ml3sd")
-target_score = 4000.0
+target_score = 8000.0
 next_scene = ExtResource("2_c00ap")
 score_label = NodePath("CanvasLayer/Label")
 
-[node name="ParallaxBG" type="ParallaxLayer" parent="." unique_id=455257538]
-scale = Vector2(0.183, 0.183)
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(7400, 0)
+[node name="ParallaxBG" type="ParallaxLayer" parent="." unique_id=1435866959]
+motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(320, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG" unique_id=1762938153]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBG" unique_id=605606050]
 texture_repeat = 2
-position = Vector2(-5.4644814, 0)
-scale = Vector2(6.428801, 6.318306)
-texture = ExtResource("3_2mdnl")
+scale = Vector2(1.1764706, 1.125)
+texture = ExtResource("3_bg")
+centered = false
+
+[node name="ParallaxFarBuildings" type="ParallaxLayer" parent="." unique_id=868829785]
+motion_scale = Vector2(0.15, 0.15)
+motion_mirroring = Vector2(250.58824, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxFarBuildings" unique_id=1114221010]
+texture_repeat = 2
+position = Vector2(0, 12.941176)
+scale = Vector2(1.1764706, 1.1764706)
+texture = ExtResource("4_far")
+centered = false
+
+[node name="ParallaxBuildings" type="ParallaxLayer" parent="." unique_id=1741529996]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBuildings" unique_id=21970597]
+texture_repeat = 2
+position = Vector2(0, 3.5294118)
+scale = Vector2(1.1764706, 1.1764706)
+texture = ExtResource("5_buildings")
+centered = false
+
+[node name="ParallaxForeground" type="ParallaxLayer" parent="." unique_id=842510847]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxForeground" unique_id=1811842041]
+texture_repeat = 2
+position = Vector2(0, 57.64706)
+scale = Vector2(1.1764706, 1.1764706)
+texture = ExtResource("6_foreground")
 centered = false
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=163026559]
+position = Vector2(0, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=339863211]
 position = Vector2(160, 184.5625)
 shape = SubResource("RectangleShape2D_anv12")
-
-[node name="ParallaxCity1" type="ParallaxLayer" parent="." unique_id=1182525228]
-scale = Vector2(0.21, 0.21)
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(3300, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxCity1" unique_id=489792820]
-texture_repeat = 2
-position = Vector2(9.536743e-07, 457.1429)
-scale = Vector2(3.0287118, 2.828125)
-texture = ExtResource("3_ec8db")
-centered = false
-
-[node name="ParallaxCity2" type="ParallaxLayer" parent="." unique_id=350855643]
-scale = Vector2(0.21, 0.21)
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(3300, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxCity2" unique_id=953542654]
-position = Vector2(9.523812, 576.1905)
-scale = Vector2(2.3204837, 2.828125)
-texture = ExtResource("5_tovxd")
-centered = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=94682133]
 
@@ -66,16 +82,42 @@ offset_right = 40.0
 offset_bottom = 22.0
 text = "Score: 0"
 
-[node name="Player" parent="." unique_id=100712526 instance=ExtResource("6_c00ap")]
-position = Vector2(-110, 87)
+[node name="Player" parent="." unique_id=100712526 instance=ExtResource("7_player")]
+position = Vector2(-110, 86)
 
-[node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("7_ec8db")]
+[node name="Spawner" parent="." unique_id=2098601647 node_paths=PackedStringArray("ground_marker", "air_marker") instance=ExtResource("8_spawner")]
 position = Vector2(168, 88)
+ground_enemy_scene = ExtResource("9_4d5s1")
+air_enemy_scene = ExtResource("10_w2bpo")
 ground_marker = NodePath("../GroundSpawnPoint")
 air_marker = NodePath("../AirSpawnPoint")
 
 [node name="GroundSpawnPoint" type="Marker2D" parent="." unique_id=807753069]
-position = Vector2(269, 171)
+position = Vector2(311.84, 171)
 
 [node name="AirSpawnPoint" type="Marker2D" parent="." unique_id=357754508]
-position = Vector2(300, 158)
+position = Vector2(311.935, 158)
+
+[node name="PhaseWarning" type="CanvasLayer" parent="." unique_id=36545574]
+script = ExtResource("11_w2bpo")
+
+[node name="ColorRect" type="ColorRect" parent="PhaseWarning" unique_id=832232309]
+offset_top = 67.0
+offset_right = 320.0
+offset_bottom = 114.0
+color = Color(0.15199637, 0.15199637, 0.15199631, 1)
+
+[node name="Label" type="Label" parent="PhaseWarning" unique_id=2125110948]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -15.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Era Industrial"
+label_settings = SubResource("LabelSettings_516mq")

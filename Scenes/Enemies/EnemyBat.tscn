@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://d2ecbatqsigu5"]
+
+[ext_resource type="Script" uid="uid://bhh3f2bl13vd8" path="res://Scripts/enemy.gd" id="1_jg853"]
+[ext_resource type="Texture2D" uid="uid://bo4b228anialo" path="res://Sprites/Enemies/EnemyBat.png" id="2_w37c1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anv12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i3ja"]
+atlas = ExtResource("2_w37c1")
+region = Rect2(0, 0, 119, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wn8w"]
+atlas = ExtResource("2_w37c1")
+region = Rect2(119, 0, 119, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efg3e"]
+atlas = ExtResource("2_w37c1")
+region = Rect2(238, 0, 119, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c36jh"]
+atlas = ExtResource("2_w37c1")
+region = Rect2(357, 0, 119, 92)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_anv12"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i3ja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wn8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efg3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c36jh")
+}],
+"loop": 1,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="EnemyBat" type="Area2D" unique_id=809972958]
+position = Vector2(154, 85)
+script = ExtResource("1_jg853")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2102383149]
+shape = SubResource("RectangleShape2D_anv12")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=199780713]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1203008272]
+position = Vector2(-2, 0)
+scale = Vector2(0.2350335, 0.2536829)
+sprite_frames = SubResource("SpriteFrames_anv12")
+animation = &"Walk"
+autoplay = "Walk"
+frame_progress = 0.6889008
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
