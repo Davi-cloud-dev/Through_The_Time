@@ -19,6 +19,7 @@ func _physics_process(delta: float) -> void:
 	# 2. Pular
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and not is_crouching:
 		velocity.y = JUMP_VELOCITY
+		$JumpSound.play()
 
 	# 3. Agachar
 	if Input.is_action_pressed("Crouch") and is_on_floor():

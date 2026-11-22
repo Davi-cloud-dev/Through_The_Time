@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://drrxg15jp1vfb" path="res://Scenes/spawner.tscn" id="3_gntrk"]
 [ext_resource type="Texture2D" uid="uid://dtkab1pomkrvl" path="res://Sprites/Player/pulando1.png" id="5_bhhdu"]
 [ext_resource type="Texture2D" uid="uid://caspwcc4nmkx8" path="res://Sprites/Player/sprite_4.png" id="6_bhhdu"]
+[ext_resource type="AudioStream" uid="uid://cnm0vl0o4ep3y" path="res://Audios/audiopulargodot.mp3" id="8_bhhdu"]
 [ext_resource type="Texture2D" uid="uid://bn0srvl74e8r3" path="res://Sprites/Player/correndo3.png" id="8_glx4g"]
 [ext_resource type="Texture2D" uid="uid://bao0oml65hmy1" path="res://Sprites/Player/correndo4.png" id="9_miouo"]
 
@@ -116,3 +117,6 @@ scale = Vector2(0.67708284, 0.66666687)
 sprite_frames = SubResource("SpriteFrames_7t07o")
 animation = &"Idle"
 frame_progress = 0.14317614
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=1718277113]
+stream = ExtResource("8_bhhdu")
